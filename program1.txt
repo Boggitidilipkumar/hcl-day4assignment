@@ -1,0 +1,31 @@
+package com.day4.assignment;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class FileReadByte {
+	public static void main(String[] args) {
+		  
+		String fileName="data.txt";
+		InputStream inSt= null;
+		try{
+			inSt = new FileInputStream(fileName);
+			byte cont[] = new byte[2*1024];
+			int countRead = 0;
+			while((countRead = inSt.read(cont))>0) {
+				System.out.println(new String(cont, 0, countRead-1));
+				}
+		} catch (FileNotFoundException e) {
+				e.printStackTrace();
+		} catch (IOException e) {
+				    e.printStackTrace();
+		} finally {
+			try{
+				if(inSt != null) inSt.close();
+				} catch(Exception ex){}
+			}
+	}
+}
+

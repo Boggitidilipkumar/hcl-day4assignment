@@ -1,0 +1,73 @@
+package com.day4.assignment;
+
+public class BankAccount {
+		private String name;
+		private String id;
+		private double salary;
+		
+		public BankAccount() {
+		}
+		public BankAccount(String name, String id, double salary) {
+			this.name = name;
+			this.id = id;
+			this.salary = salary;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public double getSalary() {
+			return salary;
+		}
+
+		public void setSalary(double salary) {
+			this.salary = salary;
+		}
+	    public void display() {
+	    	System.out.println("Name:"+name+" Id:"+id+" Salary:"+salary);
+	    }
+		@Override
+		public String toString() {
+			return "BankAccount [name=" + name + ", id=" + id + ", salary=" + salary + "]";
+		}	
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------
+
+package com.day4.assignment;
+	import java.io.FileInputStream;
+	import java.io.FileNotFoundException;
+	import java.io.FileOutputStream;
+	import java.io.IOException;
+	import java.io.ObjectInputStream;
+	import java.io.ObjectOutputStream;
+
+
+	public class Demo1 {
+
+		public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+			ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream("demo.ser"));
+			  
+			BankAccount bankAcc=new BankAccount("Dilip","4247",1000);
+		  	  System.out.println(bankAcc);
+		  	  bankAcc.display();
+			ObjectInputStream ois= new ObjectInputStream(new FileInputStream("demo.ser"));
+		  	   BankAccount bankAccDeSer=(BankAccount) ois.readObject();
+		  	  System.out.println(bankAccDeSer);
+		  	  bankAccDeSer.display();
+		}
+	}
